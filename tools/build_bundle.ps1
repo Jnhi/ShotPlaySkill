@@ -1,4 +1,4 @@
-﻿# build_bundle.ps1 — 把技能文件按流水线顺序合并为单文件全量合集
+# build_bundle.ps1 — 把技能文件按流水线顺序合并为单文件全量合集
 # 用法: powershell -File tools/build_bundle.ps1   (在仓库根目录运行)
 # 产出: dist/超级导演系统_全量合集.md  (给 Kimi/Gemini 等长上下文AI整包投喂)
 
@@ -24,7 +24,7 @@ $files = @(
   (Join-Path $ref "04_媒介模式_短剧.md"),
   (Join-Path $ref "05_媒介模式_电影.md"),
   (Join-Path $ref "06_媒介模式_电视剧.md"),
-  (Join-Path $ref "08_高动态运镜库_机械臂级.md"),
+  (Join-Path $ref "08_运镜库_全情绪运镜圣经.md"),
   (Join-Path $ref "22_打斗系统_动作设计与打斗分镜.md"),
   (Join-Path $ref "23_动漫美学_赛璐璐光影与作画法则.md"),
   (Join-Path $ref "24_3DCG美学_渲染质感与虚拟摄影.md"),
