@@ -1,0 +1,4 @@
+interface:
+  display_name: "鲍德熹摄影美学"
+  short_description: "用鲍德熹式光影、构图、镜头运动和拍摄方法打磨影像方案"
+  default_prompt: "Use $peter-pau-cinematography to turn this scene into a Peter Pau-inspired cinematography plan without impersonating him."

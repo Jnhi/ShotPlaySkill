@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI短剧导演工具库"
+  short_description: "分层选择导演思维、摄影美学、钩子爽点和短剧制作方法"
+  default_prompt: "Use $ai-short-drama-director-kit to choose the right director skills for this AI short drama task."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "王家卫情绪美学"
+  short_description: "用王家卫式时间、记忆、暧昧、独白和都市情绪打磨场景"
+  default_prompt: "Use $wong-kar-wai-emotion to turn this scene into a mood-driven emotional treatment."

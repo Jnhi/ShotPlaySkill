@@ -1,0 +1,4 @@
+interface:
+  display_name: "50位导演大师库"
+  short_description: "覆盖奇幻、爱情、动作、古装、叙事和美学的导演蒸馏资料库"
+  default_prompt: "Use $cinema-director-master-library to choose and distill director craft layers for this AI short drama."

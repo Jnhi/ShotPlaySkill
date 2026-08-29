@@ -1,0 +1,4 @@
+interface:
+  display_name: "杜琪峰场面调度"
+  short_description: "用杜琪峰式空间、群像、沉默压迫和命运感调度短剧场面"
+  default_prompt: "Use $johnnie-to-staging to stage this scene with spatial tension and ensemble blocking."

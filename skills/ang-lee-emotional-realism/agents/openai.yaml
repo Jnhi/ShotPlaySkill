@@ -1,0 +1,4 @@
+interface:
+  display_name: "李安情感真实"
+  short_description: "用李安式克制情感、类型片人性和潜台词关系打磨人物内心"
+  default_prompt: "Use $ang-lee-emotional-realism to deepen character emotion and subtext."

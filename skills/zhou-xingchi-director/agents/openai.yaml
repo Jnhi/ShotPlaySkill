@@ -1,0 +1,4 @@
+interface:
+  display_name: "周星驰导演思维"
+  short_description: "用周星驰式导演、拍摄、表演和喜剧节奏方法打磨影像创意"
+  default_prompt: "Use $zhou-xingchi-director to turn this story idea into a Stephen Chow-inspired director treatment without impersonating him."

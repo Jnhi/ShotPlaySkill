@@ -1,0 +1,4 @@
+interface:
+  display_name: "王晶商业爽点"
+  short_description: "用王晶式商业娱乐、钩子密度、反转爽点和低成本效率设计短剧"
+  default_prompt: "Use $wong-jing-commercial-hooks to add commercial hooks and cliffhangers to this short drama."

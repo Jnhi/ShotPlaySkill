@@ -1,0 +1,4 @@
+interface:
+  display_name: "宁浩黑色喜剧"
+  short_description: "用宁浩式小人物、误会升级、因果闭环和荒诞现实结构短剧"
+  default_prompt: "Use $ning-hao-black-comedy to build a grounded black-comedy plot engine."

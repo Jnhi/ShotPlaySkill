@@ -1,0 +1,4 @@
+interface:
+  display_name: "徐克奇观动作"
+  short_description: "用徐克式东方幻想、武侠动作、视觉脑洞和类型混搭做场面设计"
+  default_prompt: "Use $tsui-hark-fantasy-action to design a kinetic fantasy-action set piece."

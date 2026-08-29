@@ -1,0 +1,4 @@
+interface:
+  display_name: "张艺谋视觉仪式"
+  short_description: "用张艺谋式色彩、仪式、民俗、队列和大画面符号做视觉概念"
+  default_prompt: "Use $zhang-yimou-visual-ritual to create a symbolic visual concept for this scene."

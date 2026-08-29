@@ -1,0 +1,20 @@
+{
+  "name": "super-director",
+  "displayName": "超级导演系统 Super Director System",
+  "description": "Bilingual (EN/中文) AI filmmaking director system: cinematography, storyboarding, blocking diagrams, pacing, and aesthetics knowledge base that outputs production-ready Six-Block video prompts for Sora/Kling/Veo/Seedance. 13 skills incl. 11 master-director styles.",
+  "version": "1.1.0",
+  "author": {
+    "name": "fanchengchen1-collab"
+  },
+  "homepage": "https://github.com/fanchengchen1-collab/super-director",
+  "license": "CC-BY-NC-ND-4.0",
+  "keywords": [
+    "ai-filmmaking",
+    "video-prompts",
+    "storyboard",
+    "cinematography",
+    "seedance",
+    "kling",
+    "short-drama"
+  ]
+}

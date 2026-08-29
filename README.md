@@ -1,0 +1,323 @@
+# 🎬 超级导演系统 · Super Director System
+
+> **把导演的判断力装进 Claude。** 光影、分镜、调度、节奏、美学——数百集 AI 短剧实战打磨出的全套导演工艺,打包成 Claude Skills 插件:丢进一个剧本,走出带调度图的完整分镜和可直接投喂视频模型的提示词。
+>
+> **A director's judgment, installed into Claude.** Forged across hundreds of episodes of real AI short-drama production — feed it a script, get back blocking diagrams, a full shot list, and production-ready prompts for Sora / Kling / Veo / Seedance. **[Jump to English ↓](#-english)**
+
+**中文用户从这里开始 ↓ ｜ English speakers: [full English docs below ↓](#-english)**
+
+---
+
+## 一、这是什么
+
+给 AI 装上"导演脑"的知识库+工作流。它不是提示词模板集——它先像导演一样想(这场戏观众该感到什么?权力关系怎么用站位讲?光从哪来?),再像制片厂一样交付(调度图→分镜表→六段式提示词,层层过检)。
+
+**13 个技能,一次安装:**
+
+| 技能 | 干什么 |
+|---|---|
+| `cinema-director` | 中文主系统:路由总纲+19份工艺文件+美学基础库+调度图圣经+实战手册+示例圣经 |
+| `cinema-director-en` | 英文主系统:全英文路由/铁律/六段式规范+英文版实战手册/调度图/示例圣经,提示词输出英文 |
+| `zhang-yimou-visual-ritual` | 张艺谋:单色统治与视觉仪式 |
+| `wong-kar-wai-emotion` | 王家卫:抽帧/手持/暧昧光影 |
+| `ang-lee-emotional-realism` | 李安:情感现实主义 |
+| `johnnie-to-staging` | 杜琪峰:站位美学与静默张力 |
+| `tsui-hark-fantasy-action` | 徐克:武侠奇观动作设计 |
+| `wong-jing-commercial-hooks` | 王晶:商业钩子与爽点 |
+| `ning-hao-black-comedy` | 宁浩:黑色幽默多线叙事 |
+| `zhou-xingchi-director` | 周星驰:喜剧机理 |
+| `peter-pau-cinematography` | 鲍德熹:摄影布光法 |
+| `cinema-director-master-library` | 71位导演深档总库+点将路由 |
+| `ai-short-drama-director-kit` | AI短剧导演工具包 |
+
+## 二、工作流程(四步交付)
+
+```
+        剧本 / 一个点子
+             │
+   ┌─────────▼─────────┐
+   │ 第0步 · 美学圣经    │  没有圣经不开机:七步法锁死全剧的看相
+   │ (每个项目做一次)    │  (照 91示例圣经 抄结构,10分钟粗版也行)
+   └─────────┬─────────┘
+             │
+   ① 🎬 导演分析          节奏弧 / 镜头段落总量 / 最难一点
+             │
+   ② 🗺️ 场面调度图        每场一张文字版俯视图:站位+走位线+机位+灯位+轴线
+             │            → 跳轴/无源光/空间失忆在图纸期就死掉
+   ③ 📋 分镜表            每段≤15s,景别交替,动静匹配,段尾=下段开头
+             │
+   ④ ✍️ 六段式提示词      每段一条,六大板块焊死,负面词兜底
+             │
+   🖼️ 图先行生成          先出首帧图审过 → 再图生视频 → 过交付快检六问
+```
+
+## 三、五分钟上手教程
+
+**第 1 步 · 安装**(二选一)
+
+```bash
+# 方式A:Claude Code 插件
+/plugin marketplace add fanchengchen1-collab/super-director
+/plugin install super-director
+```
+
+方式B:把 `skills/` 下的文件夹复制到 `~/.claude/skills/`,重启 Claude Code。
+
+**推荐运行环境**(按体验排序):
+
+| 环境 | 用法 | 体验 |
+|---|---|---|
+| **Claude Code**(首选) | 插件安装,技能自动触发 | 完整体验:说人话即调用,路由自动执行 |
+| **Codex** | 各技能已内置 `agents/openai.yaml` 适配 | 技能可识别,工作流手动引导 |
+| **Kimi**(K2 Agent) | 投喂 `dist/超级导演系统_全量合集.md`(400KB单文件) | 全量知识+流水线顺序,长上下文一次吃下 |
+| **其他任何AI**(ChatGPT/Gemini/网页对话) | 投喂 `dist/超级导演系统_单文件执行版.md` | 精编单文件:执行协议+五阶段门禁+全部模板内嵌,**零外挂依赖** |
+
+> **为什么要 dist/**:技能版是"懒加载"架构(路由表按需读文件),只有 Claude Code 的技能机制能保证执行;其他 AI 拿到多文件包不会主动全读。`dist/` 是"饿加载"编译产物——链路内嵌成单文件,每阶段带强制检查清单,任何 AI 照读就能跑完整流程。知识库更新后运行 `tools/build_bundle.ps1` 一键重编。
+
+**第 2 步 · 给你的项目建一本美学圣经**(每个项目一次,10-30分钟)
+
+对 Claude 说:
+> 「用七步法帮我的项目《XXX》建一本美学圣经。题材是____,平台是____(竖屏短剧/横屏)。照示例圣经的结构来。」
+
+你会得到:渲染域声明、命门句、视觉根脉、hex 锁死的色彩配方、差异化签名、分区应用表——之后所有产出都长在这本圣经上,保证 60 集像同一部剧。
+
+**第 3 步 · 跑一集**
+
+> 「这是 EP01 剧本(粘贴/拖入文件)。按四步流程跑:先出导演分析和全部调度图,然后逐场出分镜表和六段式提示词。圣经用我们刚建的。」
+
+大体量剧集会分轮交付(先分析+调度图,再逐场分镜),这是刻意设计——每轮你都能插手改方向。
+
+**第 4 步 · 生成**
+
+按"图先行"纪律:先让图片模型出每镜首帧 → 你审(像不像、光对不对)→ 首帧过了再图生视频。角色一致性靠"身份描述块逐字复用+参考图锁脸",手册里有完整流程。
+
+**第 5 步 · 翻车了?**
+
+把生成结果的问题描述给 Claude:
+> 「这段画面人物像贴在背景上/动作僵硬/太干净像渲染图,帮我诊断改提示词。」
+
+会按"去AI感三方"给出病灶和修正版提示词,改一处测一处。
+
+## 四、输出长什么样(真实格式示例)
+
+<details>
+<summary>点开看一段六段式提示词(示例项目《雪刀客栈》)</summary>
+
+```
+「视频段落 P3」(镜头 S3-01 至 S3-02,总时长 7s)
+
+【核心风格基调】
+中式武侠+风雪孤驿杀气临门+北宋雪景寒林美学+沉浸式氛围感+电影级镜头语言
++实拍电影质感,真实光影物理+9:16竖屏构图
+
+【画面质感参数】
+老木柜台包浆、粗陶碗豁口、门外雪粒被风卷入,灶火橘暖光为全帧唯一暖锚
+(光源=北墙灶膛,向南衰减,近亮远暗)+黛蓝雪夜冷底+光比6:1+呼出白气
++接触阴影清晰,营造《绣春刀》式风雪意境
+
+【角色/主体设定】
+店小二:三十岁上下,粗布短打油渍围裙,擦碗的手稳而慢,眼皮低垂神情温吞;
+赏金头目:披斗篷带雪进门,按刀而立;保持五官发型服装不变,同一角色,面部清晰不变形
+
+【镜头与分镜脚本】
+场景总设定:夜,风雪客栈大堂,灶火为主光源,9:16竖屏
+0-4s [S3-01]:中景,固定,大门被推开,头目披雪而入,门外风雪灌进,桌上油灯齐齐一矮,
+(门轴呻吟|风雪嘶吼|大堂骤静)
+4-7s [S3-02]:特写,固定,柜台后店小二擦碗的手没有停,把碗轻轻放下,布叠得方正,
+(布擦陶碗的沙沙声|风声被门板隔弱)
+⚡ 景别交替检查:MS-CU ✅
+⚡ 动静匹配检查:动-静(骤静收口,形状故意为之) ✅
+⚡ 段尾状态:店小二双手按在叠好的布上,抬眼 → 下段从抬眼开始
+
+【技术与输出参数】
+4K,30fps,9:16,时长7s,运镜:S3-01固定/S3-02固定
+
+【负面提示词】
+避免:横屏构图,背景音乐,配乐,动画感,塑料皮肤,影楼打光,均匀无方向的全局照明,
+人物滑步,出厂全新材质
+```
+
+</details>
+
+## 五、为什么它不一样
+
+1. **L1/L2 分离**:"电影是这样"(永恒规律)与"AI 目前只能这样"(临时约束)严格分层——模型换十代,工艺层一字不改。混写的提示词库,模型一升级整库作废。
+2. **调度画成图再拆镜**:文字版俯视调度图(站位+走位线+机位+灯位+轴线)前置于分镜——跳轴、无源光、空间失忆在图纸期就死掉。全赛道没有第二家做这个。
+3. **三渲染域正交轴**:写实/2D动漫/3DCG 各有光影法则,开工先拨域,规则不串味。
+4. **先情绪后技术**:每颗镜头先答"观众此刻该感到什么"。这是系统第一铁律,也是它产出不像"AI 味模板"的根本原因。
+
+## 六、开源版 vs Pro 版
+
+开源版=**方法论全量+产线够用版**:全部导演工艺与美学知识+调度图圣经+实战手册(生成红线/去AI感/角色一致性/硬性规则/交付快检)——照着做,能稳定产出制作精良的成片。
+
+Pro 版=**工业化量产线**:逐模型脾气红线库与翻车病历本、素材QA评分器(六维打分+自动重生红线)、表情表演库(40情绪×三档+FACS防变脸)、剧组流水线(5工种智能体+双质检打回)、完整首帧锚定与角色资产台账、后期质感SOP、进化引擎。一句话:**开源版让你拍出好片,Pro 版让你批量稳定地拍出更好的片。** 文件中指向这些编号的引用属有意剥离,非死链。
+
+## 七、FAQ
+
+**Q:支持哪些视频模型?** 红线是跨模型通用的(单镜单向/禁焦距数值/5-15s/光线详写);中文提示词适配即梦 Seedance/海螺,英文提示词适配 Kling/Veo/Sora/Runway。用 `cinema-director-en` 直接输出英文。
+**Q:必须会用 Claude Code 吗?** 不必须。推荐顺序:Claude Code(自动触发)> Codex(已带 openai.yaml 适配)> Kimi K2 Agent(挂载为知识库)。任何能读文件的 AI 对话都能用,见上方"推荐运行环境"。
+**Q:文档都是中文,英语用户怎么办?** 用 `cinema-director-en`:交互和输出全英文,中文知识库由 Claude 原生阅读,对你透明。
+**Q:能商用吗?** 创作你自己的片子=可以;把本内容做成课程/付费资料卖=不可以(License 见下)。
+
+## License
+
+**CC BY-NC-ND 4.0**(署名-非商业性使用-禁止演绎)。可自由学习、使用、分享;不得商用(含卖课/付费社群),不得改编后再分发。商业合作请开 issue。
+
+---
+---
+
+# 🎬 English
+
+> **A director's judgment, installed into Claude.** Lighting, storyboarding, blocking, pacing, aesthetics — a complete film-craft system distilled from hundreds of episodes of real AI short-drama production. Feed it a script; get back blocking diagrams, a full shot list, and production-ready prompts for **Sora · Kling · Veo · Seedance · Runway**.
+
+## What is this?
+
+A knowledge base + director workflow that makes Claude think like a director before it writes a single prompt. It is not a prompt-template pack: it first thinks (what should the audience feel? how does blocking tell the power story? where does the light come from?), then delivers like a studio (blocking diagram → shot list → Six-Block prompts, each stage gated by checks).
+
+**13 skills in one install** — the English master system `cinema-director-en` (English interaction, English prompt output, English handbook/blocking-diagram/example-bible), the Chinese master system, and 11 master-director style skills (Zhang Yimou, Wong Kar-wai, Ang Lee, Johnnie To, Tsui Hark, Stephen Chow, Peter Pau, a 71-director deep-profile library, and more).
+
+> The deep craft files are written in Chinese — Claude reads them natively and serves you in English. You never touch the file language.
+
+## The Workflow (4-step delivery)
+
+```
+        your script / your idea
+              │
+   ┌──────────▼──────────┐
+   │ Step 0 · Style Bible │  no bible, no camera: the 7-step method locks
+   │ (once per project)   │  the show's entire look (copy example-style-bible.md)
+   └──────────┬──────────┘
+              │
+   ① 🎬 Director Analysis     pacing arc / shot & segment counts / hardest problem
+              │
+   ② 🗺️ Blocking Diagram      one text-based overhead map per scene: positions,
+              │               movement paths, cameras, lights, axis
+              │               → axis jumps, unmotivated light, spatial amnesia
+              │                 die on paper, before generation
+   ③ 📋 Shot List             segments ≤15s, shot sizes alternate, motion matches,
+              │               each segment's end = next segment's start
+   ④ ✍️ Six-Block Prompts     one per segment, six fixed blocks, negatives included
+              │
+   🖼️ Image-first generation  first frames as stills → approve → image-to-video
+                              → pre-delivery checklist
+```
+
+## Five-Minute Tutorial
+
+**Step 1 · Install** (either way)
+
+```bash
+# Option A: Claude Code plugin
+/plugin marketplace add fanchengchen1-collab/super-director
+/plugin install super-director
+```
+
+Option B: copy the folders under `skills/` into `~/.claude/skills/` and restart Claude Code.
+
+**Recommended runtimes** (ranked by experience):
+
+| Runtime | How | Experience |
+|---|---|---|
+| **Claude Code** (best) | plugin install, skills auto-trigger | full experience: just talk, routing runs itself |
+| **Codex** | every skill ships an `agents/openai.yaml` adapter | skills recognized, workflow manually guided |
+| **Kimi** (K2 Agent) | feed it `dist/超级导演系统_全量合集.md` (400KB single file) | full knowledge base in pipeline order, one long-context meal |
+| **Any other AI** (ChatGPT / Gemini / web chats) | feed it `dist/超级导演系统_单文件执行版.md` | distilled single file: execution protocol + 5 gated stages + all templates inlined, **zero external-file dependency** |
+
+> **Why dist/ exists**: the skill edition is a lazy-loading architecture (the routing table reads files on demand) — only Claude Code's skill mechanics guarantee that actually happens. Other AIs won't voluntarily read a multi-file package. `dist/` is the eager-loaded build artifact: the whole chain compiled into one file, each stage gated by a mandatory checklist any AI can follow. Re-build after updates with `tools/build_bundle.ps1`.
+
+**Step 2 · Build your project's style bible** (once per project, 10–30 min)
+
+Say to Claude:
+> "Build a style bible for my project *«Title»* using the 7-step method. Genre: ____, format: ____ (vertical short drama / 16:9). Follow the structure of the example style bible."
+
+You get: render-domain declaration, a lifeline sentence, visual roots, a hex-locked color recipe, a differentiating signature, and a zone table — every later output grows from this bible, which is what keeps 60 episodes looking like one show.
+
+**Step 3 · Run an episode**
+
+> "Here is the EP01 script (paste / attach). Run the 4-step delivery: director analysis and all blocking diagrams first, then scene by scene the shot list and Six-Block prompts. Use the bible we just built."
+
+Big episodes deliver in rounds by design — you can steer between rounds.
+
+**Step 4 · Generate**
+
+Follow the image-first discipline: generate each shot's first frame as a still → approve it (likeness, light) → then image-to-video. Character consistency comes from verbatim identity blocks + reference-image face lock — full flow in the production handbook.
+
+**Step 5 · Something looks wrong?**
+
+> "This segment looks AI-generated — the character floats on the background / motion is stiff / it's too clean. Diagnose and fix the prompt."
+
+Claude applies the three de-AI fixes and returns a corrected prompt — change one thing, test one thing.
+
+## What the Output Looks Like
+
+<details>
+<summary>Open a sample Six-Block prompt (example project "Snowblade Inn")</summary>
+
+```
+"Video Segment P3" (shots S3-01 to S3-02, total 7s)
+
+[Core Style & Tone]
+Chinese wuxia + killing intent at the door of a snowbound inn + Northern-Song
+snow-forest aesthetics + immersive atmosphere + cinematic camera language
++ live-action cinematic realism, physically-grounded light + 9:16 vertical composition
+
+[Visual Texture Parameters]
+Aged counter wood with hand-worn patina, chipped coarse ceramic bowls, snow grains
+blown in through the door; hearth-orange firelight as the frame's ONLY warm anchor
+(source = north-wall stove, falling off southward, near-bright far-dark) + indigo
+snow-night cold base + contrast ratio 6:1 + visible breath + grounded contact
+shadows, evoking the mood of "Brotherhood of Blades"
+
+[Character/Subject Setup]
+The innkeeper: about thirty, coarse cloth shirt and oil-stained apron, wiping a bowl
+with slow steady hands, eyes lowered, mild expression; Bounty leader: cloaked, snow
+on his shoulders, hand resting on his sword hilt. Keep facial structure, hairstyle
+and wardrobe unchanged; same characters throughout; faces clear, no morphing
+
+[Shot-by-Shot Script]
+Scene master setup: night, snowstorm inn hall, stove fire as key light, 9:16 vertical
+0-4s [S3-01]: medium shot, locked camera, the door bursts open, the cloaked leader
+steps in trailing snow, wind pours in and every oil lamp flame dips at once,
+(door hinge groan | storm howl | the hall goes dead silent)
+4-7s [S3-02]: close-up, locked camera, behind the counter the innkeeper's wiping
+hand never pauses — he sets the bowl down gently, folds the cloth flat,
+(soft rasp of cloth on ceramic | the storm muffled by the door)
+⚡ Shot-size alternation: MS-CU ✅
+⚡ Motion-energy match: motion → stillness (deliberate hard-stop shape) ✅
+⚡ End state: innkeeper's hands rest on the folded cloth, eyes lifting →
+   next segment starts on the lifted gaze
+
+[Technical & Output Specs]
+4K, 30fps, 9:16, duration 7s, camera: S3-01 locked / S3-02 locked
+
+[Negative Prompts]
+avoid: horizontal composition, background music, soundtrack, cartoon look, plastic
+skin, studio-portrait lighting, uniform directionless lighting, foot sliding,
+factory-new materials
+```
+
+</details>
+
+## Why It's Different
+
+1. **L1/L2 separation** — "how cinema works" (permanent law) is strictly separated from "what AI can do today" (temporary constraints). Ten model generations from now, the craft layer won't change a word. Mixed-up prompt libraries die at every model upgrade.
+2. **Blocking is drawn before shots are broken** — a text-based overhead map (positions, paths, cameras, lights, axis) precedes the shot list, so axis jumps, unmotivated light and spatial amnesia die on paper. Nobody else in this category does this.
+3. **Three orthogonal render domains** — live-action, 2D anime and 3D CG each get their own lighting law; you set the domain switch before anything else, and the rules never bleed.
+4. **Emotion before technique** — every shot first answers "what should the audience feel right now." This is Iron Rule #1, and the reason the output doesn't read like AI-flavored templates.
+
+## Open vs Pro
+
+**Open edition** = the full methodology + a workable production line: all craft & aesthetics knowledge, the blocking-diagram bible, and the production handbook (universal red lines / de-AI fixes / image-first consistency / ten hard rules / pre-delivery checklist). Follow it and you ship polished films.
+
+**Pro edition** = the industrial line: per-model quirk & red-line libraries with tested failure casebooks, a 6-dimension footage QA scorer with auto-regenerate thresholds, a facial performance library (40 emotions × 3 intensities + FACS anti-face-drift), a 5-agent crew pipeline with dual QA rejection, full first-frame anchoring & character asset ledgers, post-production SOP, and the evolution engine. In one line: **open gets you a great film; Pro gets you great films at scale, repeatably.** In-file references to those module numbers are deliberate separation, not dead links.
+
+## FAQ
+
+**Q: Which video models?** The red lines are model-agnostic (one move per shot / no lens numbers / 5–15s / detailed light). English prompts target Kling, Veo, Sora, Runway; Chinese prompts target Seedance/Jimeng and Hailuo. Use `cinema-director-en` for English output.
+**Q: Do I need Claude Code?** No. Preference order: Claude Code (auto-triggering) > Codex (openai.yaml adapters included) > Kimi K2 Agent (mount as knowledge base). Any file-reading AI chat works — see "Recommended runtimes" above.
+**Q: The deep files are in Chinese — is that a problem?** No. Use `cinema-director-en`: interaction and output are fully English; Claude reads the Chinese knowledge base natively, invisibly to you.
+**Q: Commercial use?** Making your own films with it: yes. Selling this content as courses/paid material: no (see License).
+
+## License
+
+**CC BY-NC-ND 4.0** — free to learn from, use, and share with attribution; no commercial redistribution (including paid courses), no derivative redistribution. For commercial licensing, open an issue.
